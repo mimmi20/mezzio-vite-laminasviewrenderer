@@ -15,6 +15,7 @@ namespace Mimmi20\LaminasView\ViteUrl\View\Helper;
 
 use JsonException;
 use Laminas\View\Exception\RuntimeException;
+use Laminas\View\Helper\HelperInterface;
 use Mezzio\Helper\ServerUrlHelper;
 
 use function file_get_contents;
@@ -25,7 +26,7 @@ use function sprintf;
 
 use const JSON_THROW_ON_ERROR;
 
-final readonly class ViteUrl
+final readonly class ViteUrl implements HelperInterface
 {
     /** @throws void */
     public function __construct(

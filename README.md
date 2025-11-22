@@ -64,8 +64,9 @@ This viewhelper needs a config to know where the public and the build directorie
 return [
     // ...
     'vite-url' => [
-        'public-dir' => 'public', // <-- relative to the project root
-        'build-dir' => 'dist',    // <-- relative to the public directory
+        'public-dir' => 'public',              // <-- relative to the project root
+        'build-dir' => 'dist',                 // <-- relative to the public directory
+        'vite-host' => 'http://localhost:8080' // <-- Host of the Vite DEV-Server or `null` if the DEV-Server is not used
     ],
     // ...
 ];
