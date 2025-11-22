@@ -1,0 +1,73 @@
+# https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+
+# file-version: 1.0
+
+version: 2
+
+updates:
+  - package-ecosystem: "composer"
+
+    directory: "/"
+
+    schedule:
+      interval: "cron"
+      cronjob: "0 4 24 * *"
+      timezone: "Europe/Berlin"
+
+    cooldown:
+      default-days: 7
+
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
+
+    assignees:
+      - "mimmi20"
+
+    labels:
+      - "dependencies"
+
+    versioning-strategy: "increase"
+
+    commit-message:
+      include: "scope"
+      prefix: "composer (master)"
+
+    # Disable rebasing for all pull requests
+    rebase-strategy: "disabled"
+
+  - package-ecosystem: "github-actions"
+
+    directory: "/"
+
+    schedule:
+      interval: "cron"
+      cronjob: "0 4 24 * *"
+      timezone: "Europe/Berlin"
+
+    cooldown:
+      default-days: 7
+
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
+
+    assignees:
+      - "mimmi20"
+
+    labels:
+      - "dependencies"
+
+    commit-message:
+      prefix: "github-actions (master)"
+
+    ignore:
+      - dependency-name: "mimmi20/ci"
+      - dependency-name: "release-drafter/release-drafter"
+
+    # Disable rebasing for all pull requests
+    rebase-strategy: "disabled"

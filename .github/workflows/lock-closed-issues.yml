@@ -1,0 +1,23 @@
+# https://help.github.com/en/categories/automating-your-workflow-with-github-actions
+
+# file-version: 1.0
+
+name: "Lock closed issue"
+
+on:
+  issues:
+    types:
+      - "closed"
+
+permissions:
+  contents: read
+
+jobs:
+  lock:
+    name: "Lock"
+    runs-on: "ubuntu-latest"
+    permissions:
+      issues: write
+    steps:
+      - name: "Lock issue"
+        uses: "IOrlandoni/lock-issues@v1.2.1"
