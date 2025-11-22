@@ -1,26 +1,83 @@
-# template
+# mezzio-vite-laminasviewrenderer
 
-[![Latest Stable Version](https://poser.pugx.org/mimmi20/template/v/stable?format=flat-square)](https://packagist.org/packages/mimmi20/template)
-[![Latest Unstable Version](https://poser.pugx.org/mimmi20/template/v/unstable?format=flat-square)](https://packagist.org/packages/mimmi20/template)
-[![License](https://poser.pugx.org/mimmi20/template/license?format=flat-square)](https://packagist.org/packages/mimmi20/template)
+[![Latest Stable Version](https://poser.pugx.org/mimmi20/mezzio-vite-laminasviewrenderer/v/stable?format=flat-square)](https://packagist.org/packages/mimmi20/mezzio-vite-laminasviewrenderer)
+[![Latest Unstable Version](https://poser.pugx.org/mimmi20/mezzio-vite-laminasviewrenderer/v/unstable?format=flat-square)](https://packagist.org/packages/mimmi20/mezzio-vite-laminasviewrenderer)
+[![License](https://poser.pugx.org/mimmi20/mezzio-vite-laminasviewrenderer/license?format=flat-square)](https://packagist.org/packages/mimmi20/mezzio-vite-laminasviewrenderer)
 
 ## Code Status
 
-[![codecov](https://codecov.io/gh/mimmi20/template/branch/master/graph/badge.svg)](https://codecov.io/gh/mimmi20/template)
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mimmi20/template.svg)](https://isitmaintained.com/project/mimmi20/template "Average time to resolve an issue")
-[![Percentage of issues still open](https://isitmaintained.com/badge/open/mimmi20/template.svg)](https://isitmaintained.com/project/mimmi20/template "Percentage of issues still open")
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fmimmi20%2Ftemplate%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/mimmi20/template/master)
+[![codecov](https://codecov.io/gh/mimmi20/mezzio-vite-laminasviewrenderer/branch/master/graph/badge.svg)](https://codecov.io/gh/mimmi20/mezzio-vite-laminasviewrenderer)
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mimmi20/mezzio-vite-laminasviewrenderer.svg)](https://isitmaintained.com/project/mimmi20/mezzio-vite-laminasviewrenderer "Average time to resolve an issue")
+[![Percentage of issues still open](https://isitmaintained.com/badge/open/mimmi20/mezzio-vite-laminasviewrenderer.svg)](https://isitmaintained.com/project/mimmi20/mezzio-vite-laminasviewrenderer "Percentage of issues still open")
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fmimmi20%2Fmezzio-vite-laminasviewrenderer%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/mimmi20/mezzio-vite-laminasviewrenderer/master)
+
+## Introduction
+
+This component provides a view helper to render urls for resources build with Vite
 
 ## Requirements
 
-This library requires PHP 8.1+.
+This library requires PHP 8.3+.
 
 ## Installation
 
 Run
 
 ```shell
-composer require mimmi20/template
+composer require mimmi20/mezzio-vite-laminasviewrenderer
+```
+
+## Prepare Vite
+
+In your Vite config, you need to activate the manifest. 
+
+```js
+  publicDir: 'public',
+  base: '/dist/',
+  build: {
+    // ...
+    outDir: 'public/dist', // relative to the `root` folder
+    manifest: true,
+    // ...
+    
+    rollupOptions: {
+      input: [
+        path.resolve(__dirname, 'public/css/styles.css'),
+        path.resolve(__dirname, 'public/scss/styles.scss'),
+      ]
+    }
+  }
+```
+
+The required manifest file and the resorce files are created when running Vite's build command.
+
+```shell
+npx vite build
+```
+
+## Config
+
+This viewhelper needs a config to know where the public and the build directories are. The directories have to match the directories configured for Vite.
+
+```php
+<?php
+return [
+    // ...
+    'vite-url' => [
+        'public-dir' => 'public', // <-- relative to the project root
+        'build-dir' => 'dist',    // <-- relative to the public directory
+    ],
+    // ...
+];
+```
+
+## Usage
+
+Now you may add a file build with Vite. It is nessesary to use the exact path, you use in the Vite config. Otherwise the file can not be found in the manifest.
+
+```php
+    $this->headLink()->appendStylesheet($this->viteUrl()->file('public/css/styles.css'), 'screen', ['rel' => 'stylesheet']);
+    $this->headLink()->appendStylesheet($this->viteUrl()->file('public/scss/styles.scss'), 'screen', ['rel' => 'stylesheet']);
 ```
 
 ## License

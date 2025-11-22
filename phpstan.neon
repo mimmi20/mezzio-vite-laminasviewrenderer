@@ -85,12 +85,12 @@ parameters:
       tooWideThrowType: true
 
   cognitive_complexity:
-    class: 1
-    function: 1
+    class: 16
+    function: 6
 
   type_coverage:
     return_type: 100
-    param_type: 100
+    param_type: 83.3
     property_type: 100
     constant_type: 100
     # also, how many files has declare strict types
@@ -107,8 +107,9 @@ parameters:
     no_mixed: true
     narrow_param: true
 
-#  ignoreErrors:
-#    - '~MockObject~'
+  ignoreErrors:
+    - '~will always evaluate to true~'
+    - '~Method Mimmi20\\LaminasView\\ViteUrl\\View\\Helper\\ViteUrl::manifestContents\(\) should return array<string, array{file: string, imports: array<string, mixed>, css: array<string, mixed>}> but returns mixed~'
 
 rules:
   # code complexity

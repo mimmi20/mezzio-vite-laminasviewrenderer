@@ -48,7 +48,7 @@
     </source>
 
     <testsuites>
-        <testsuite name="Template Test Suite">
+        <testsuite name="mezzio-vite-laminasviewrenderer Test Suite">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>

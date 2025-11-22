@@ -11,7 +11,7 @@ updates:
 
     schedule:
       interval: "cron"
-      cronjob: "0 4 24 * *"
+      cronjob: "0 4 9 * *"
       timezone: "Europe/Berlin"
 
     cooldown:
@@ -35,6 +35,12 @@ updates:
       include: "scope"
       prefix: "composer (master)"
 
+    ignore:
+      - dependency-name: "laminas/laminas-servicemanager"
+        versions: [ ">=4.0.0" ]
+      - dependency-name: "laminas/laminas-view"
+        versions: [ ">=3.0.0" ]
+
     # Disable rebasing for all pull requests
     rebase-strategy: "disabled"
 
@@ -44,7 +50,7 @@ updates:
 
     schedule:
       interval: "cron"
-      cronjob: "0 4 24 * *"
+      cronjob: "0 4 9 * *"
       timezone: "Europe/Berlin"
 
     cooldown:

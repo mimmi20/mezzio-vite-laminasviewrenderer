@@ -1,6 +1,6 @@
 {
-  "name": "mimmi20/template",
-  "description": "Provides a GitHub repository template for a PHP library, using GitHub actions.",
+  "name": "mimmi20/mezzio-vite-laminasviewrenderer",
+  "description": "Provides a Viewhelper to render urls for resources build with Vite",
   "license": "MIT",
   "type": "library",
   "authors": [
@@ -11,17 +11,20 @@
     },
     {
       "name": "Contributors",
-      "homepage": "https://github.com/mimmi20/template/graphs/contributors"
+      "homepage": "https://github.com/mimmi20/mezzio-vite-laminasviewrenderer/graphs/contributors"
     }
   ],
-  "homepage": "https://github.com/mimmi20/template",
+  "homepage": "https://github.com/mimmi20/mezzio-vite-laminasviewrenderer",
   "support": {
-    "issues": "https://github.com/mimmi20/template/issues",
-    "source": "https://github.com/mimmi20/template"
+    "issues": "https://github.com/mimmi20/mezzio-vite-laminasviewrenderer/issues",
+    "source": "https://github.com/mimmi20/mezzio-vite-laminasviewrenderer"
   },
   "require": {
     "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
-    "ext-mbstring": "*"
+    "laminas/laminas-view": "^2.43.0",
+    "mezzio/mezzio-helpers": "^5.20.0",
+    "mezzio/mezzio-laminasviewrenderer": "^2.19.0",
+    "psr/container": "^1.1.2"
   },
   "require-dev": {
     "ext-ctype": "*",
@@ -30,15 +33,17 @@
     "ext-tokenizer": "*",
     "ext-xml": "*",
     "ext-xmlwriter": "*",
-    "infection/infection": "^0.31.7",
+    "infection/infection": "^0.31.9",
+    "laminas/laminas-modulemanager": "^2.19.0",
+    "laminas/laminas-servicemanager": "^3.24.0",
+    "mikey179/vfsstream": "^1.6.12",
     "mimmi20/coding-standard": "^6.2.5",
     "nikic/php-parser": "^5.6.2",
     "phpstan/extension-installer": "^1.4.3",
     "phpstan/phpstan": "^2.1.31",
     "phpstan/phpstan-deprecation-rules": "^2.0.3",
-    "phpstan/phpstan-phpunit": "^2.0.7",
-    "phpunit/phpunit": "^12.4.1",
-    "rector/rector": "^2.2.4",
+    "phpunit/phpunit": "^12.4.2",
+    "rector/rector": "^2.2.7",
     "rector/type-perfect": "^2.1.1",
     "shipmonk/composer-dependency-analyser": "^1.8.3",
     "symfony/process": "^7.3.4",
@@ -47,8 +52,22 @@
     "tomasvotruba/type-coverage": "^2.0.2",
     "tomasvotruba/unused-public": "^2.0.1"
   },
+  "suggest": {
+    "laminas/laminas-modulemanager": "to register this project as module",
+    "laminas/laminas-servicemanager": "to use the viewhelper factories"
+  },
   "minimum-stability": "stable",
   "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Mimmi20\\LaminasView\\ViteUrl\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mimmi20\\LaminasView\\ViteUrl\\": "tests/"
+    }
+  },
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
@@ -58,5 +77,11 @@
     "lock": false,
     "preferred-install": "dist",
     "sort-packages": true
+  },
+  "extra": {
+    "laminas": {
+      "component": "Mimmi20\\LaminasView\\ViteUrl",
+      "config-provider": "Mimmi20\\LaminasView\\ViteUrl\\ConfigProvider"
+    }
   }
 }
