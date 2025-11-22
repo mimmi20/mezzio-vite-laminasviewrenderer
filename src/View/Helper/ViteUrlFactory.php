@@ -31,7 +31,6 @@ final class ViteUrlFactory implements FactoryInterface
     /**
      * Create Service Factory
      *
-     * @param string            $requestedName
      * @param array<mixed>|null $options
      * @phpstan-param array<mixed>|null $options
      *
@@ -40,8 +39,11 @@ final class ViteUrlFactory implements FactoryInterface
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
      */
     #[Override]
-    public function __invoke(ContainerInterface $container, $requestedName, array | null $options = null): ViteUrl
-    {
+    public function __invoke(
+        ContainerInterface $container,
+        string $requestedName,
+        array | null $options = null,
+    ): ViteUrl {
         $config = $container->get('config');
         assert(is_array($config));
 
