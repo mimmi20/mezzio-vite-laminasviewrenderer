@@ -3,7 +3,7 @@
 /**
  * This file is part of the mimmi20/mezzio-vite-laminasviewrenderer package.
  *
- * Copyright (c) 2025, Thomas Mueller <mimmi20@live.de>
+ * Copyright (c) 2026, Thomas Mueller <mimmi20@live.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,7 +21,7 @@ use Mezzio\Helper\ServerUrlHelper;
 use function file_get_contents;
 use function is_file;
 use function json_decode;
-use function ltrim;
+use function mb_ltrim;
 use function sprintf;
 
 use const JSON_THROW_ON_ERROR;
@@ -76,7 +76,7 @@ final readonly class ViteUrl implements HelperInterface
         }
 
         if ($this->viteHost) {
-            return $this->viteHost . '/' . ltrim($name, '/');
+            return $this->viteHost . '/' . mb_ltrim($name, '/');
         }
 
         $manifest = $this->manifestContents();
