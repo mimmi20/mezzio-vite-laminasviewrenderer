@@ -111,6 +111,14 @@ parameters:
     - '~will always evaluate to true~'
     - '~Method Mimmi20\\LaminasView\\ViteUrl\\View\\Helper\\ViteUrl::manifestContents\(\) should return array<string, array{file: string, imports: array<string, mixed>, css: array<string, mixed>}> but returns mixed~'
 
+services:
+  errorFormatter.sarif:
+    class: PHPStanSarifErrorFormatter\SarifErrorFormatter
+    arguments:
+      relativePathHelper: @simpleRelativePathHelper
+      currentWorkingDirectory: %currentWorkingDirectory%
+      pretty: true
+
 rules:
   # code complexity
   - Symplify\PHPStanRules\Rules\NoDynamicNameRule
