@@ -16,7 +16,6 @@ namespace Mimmi20\LaminasView\ViteUrl\View\Helper;
 use Laminas\View\Exception\RuntimeException;
 use Mezzio\Helper\ServerUrlHelper;
 use org\bovigo\vfs\vfsStream;
-use PHPUnit\Event\NoPreviousThrowableException;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -318,7 +317,6 @@ final class ViteUrlTest extends TestCase
     /**
      * @throws Exception
      * @throws RuntimeException
-     * @throws NoPreviousThrowableException
      * @throws \PHPUnit\Framework\MockObject\Exception
      */
     public function testFileWithManifest6(): void
